@@ -849,7 +849,7 @@ void TextEditor::HandleKeyboardInputs()
         } else if (!IsReadOnly() && !ctrl && !shift && alt && ImGui::IsKeyPressed(ImGuiKey_Backspace))
         {
             Undo();
-        } else if (!IsReadOnly() && ctrl && !shift && !alt && ImGui::IsKeyPressed(ImGuiKey_Y))
+        } else if (!IsReadOnly() && ctrl && shift && !alt && ImGui::IsKeyPressed(ImGuiKey_Z))
         {
             Redo();
         } else if (!ctrl && !alt && ImGui::IsKeyPressed(ImGuiKey_UpArrow))
