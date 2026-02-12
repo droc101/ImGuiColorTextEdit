@@ -7,6 +7,7 @@
 #include "TextEditor.h"
 
 #include "imgui.h"
+#include "imgui_internal.h" // sadly seems to be needed for PlatformImeData
 
 // TODO
 // - multiline comments vs single-line: latter is blocking start of a ML
@@ -113,6 +114,18 @@ std::string TextEditor::GetText(const Coordinates & aStart, const Coordinates & 
 TextEditor::Coordinates TextEditor::GetActualCursorCoordinates() const
 {
 	return SanitizeCoordinates(mState.mCursorPosition);
+}
+
+ImVec2 TextEditor::GetCursorScreenPosition() const
+{
+    const Coordinates cursor_position = GetActualCursorCoordinates();
+
+    const ImVec2 cursorScreenPos = ImGui::GetCursorScreenPos();
+    const ImVec2 lineStartScreenPos = ImVec2(cursorScreenPos.x, cursorScreenPos.y + cursor_position.mLine * mCharAdvance.y);
+    const ImVec2 textScreenPos = ImVec2(lineStartScreenPos.x + mTextStart, lineStartScreenPos.y);
+
+    const float cx = TextDistanceToLineStart(mState.mCursorPosition);
+    return {textScreenPos.x + cx, lineStartScreenPos.y};
 }
 
 TextEditor::Coordinates TextEditor::SanitizeCoordinates(const Coordinates & aValue) const
@@ -706,6 +719,15 @@ void TextEditor::HandleKeyboardInputs()
 		if (ImGui::IsWindowHovered())
 			ImGui::SetMouseCursor(ImGuiMouseCursor_TextInput);
 		//ImGui::CaptureKeyboardFromApp(true);
+
+	    const ImVec2 cursorPos = GetCursorScreenPosition();
+	    ImGuiContext *ctx = ImGui::GetCurrentContext();
+	    ImGuiPlatformImeData* ime_data = &ctx->PlatformImeData;
+	    ime_data->WantVisible = true;
+	    ime_data->WantTextInput = true;
+	    ime_data->InputPos = ImVec2(cursorPos.x - 1.0f, cursorPos.y - ImGui::GetFontSize());
+	    ime_data->InputLineHeight = 18;
+	    ime_data->ViewportId = ImGui::GetWindowViewport()->ID;
 
 		io.WantCaptureKeyboard = true;
 		io.WantTextInput = true;
