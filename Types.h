@@ -6,10 +6,11 @@
 #include <cassert>
 #include <cstdint>
 #include <map>
+#include <string>
 #include <unordered_map>
 #include <unordered_set>
+#include <utility>
 #include <vector>
-#include "imgui.h"
 #include "Palette.h"
 
 using String = std::string;

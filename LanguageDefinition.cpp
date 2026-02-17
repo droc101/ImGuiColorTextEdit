@@ -259,7 +259,7 @@ const LanguageDefinition &LanguageDefinition::GLSL()
             "using",
             "sampler3DRect",
         };
-        for (const auto &k: keywords)
+        for (const std::string &k: keywords)
         {
             langDef.mKeywords.insert(k);
         }
@@ -345,7 +345,7 @@ const LanguageDefinition &LanguageDefinition::GLSL()
             "noise3",
             "noise4",
         };
-        for (const auto &k: builtin_functions)
+        for (const std::string &k: builtin_functions)
         {
             Identifier id;
             id.mDeclaration = "Built-in function";
@@ -359,7 +359,7 @@ const LanguageDefinition &LanguageDefinition::GLSL()
             "gl_PointCoord",   "gl_PrimitiveID",   "gl_SampleID",         "gl_SamplePosition", "gl_SampleMaskIn",
             "gl_Layer",        "gl_ViewportIndex", "gl_HelperInvocation", "gl_FragDepth",      "gl_SampleMask",
         };
-        for (const auto &k: builtin_variables)
+        for (const std::string &k: builtin_variables)
         {
             Identifier id;
             id.mDeclaration = "Built-in variable";
@@ -422,7 +422,7 @@ const LanguageDefinition &LanguageDefinition::AngelScript()
                                                           "typedef",   "uint",     "uint8",     "uint16",    "uint32",
                                                           "uint64",    "void",     "while",     "xor"};
 
-        for (const auto &k: keywords)
+        for (const std::string &k: keywords)
         {
             langDef.mKeywords.insert(k);
         }
@@ -435,7 +435,7 @@ const LanguageDefinition &LanguageDefinition::AngelScript()
                                                              "fpToIEEE",    "complex",     "opEquals",    "opAddAssign",
                                                              "opSubAssign", "opMulAssign", "opDivAssign", "opAdd",
                                                              "opSub",       "opMul",       "opDiv"};
-        for (const auto &k: identifiers)
+        for (const std::string &k: identifiers)
         {
             Identifier id;
             id.mDeclaration = "Built-in function";

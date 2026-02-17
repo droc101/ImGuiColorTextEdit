@@ -38,4 +38,3 @@ using Palette = std::array<ImU32, static_cast<unsigned>(PaletteIndex::Max)>;
 
 const Palette &GetDarkPalette();
 const Palette &GetLightPalette();
-const Palette &GetRetroBluePalette();

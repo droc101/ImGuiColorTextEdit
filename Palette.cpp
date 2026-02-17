@@ -59,31 +59,3 @@ const Palette &GetLightPalette()
     }};
     return p;
 }
-
-const Palette &GetRetroBluePalette()
-{
-    static constexpr Palette p = {{
-        0xff00ffff, // None
-        0xffffff00, // Keyword
-        0xff00ff00, // Number
-        0xff808000, // String
-        0xff808000, // Char literal
-        0xffffffff, // Punctuation
-        0xff008000, // Preprocessor
-        0xff00ffff, // Identifier
-        0xffffffff, // Known identifier
-        0xffff00ff, // Preproc identifier
-        0xff808080, // Comment (single line)
-        0xff404040, // Comment (multi line)
-        0xff800000, // Background
-        0xff0080ff, // Cursor
-        0x80ffff00, // Selection
-        0xa00000ff, // ErrorMarker
-        0x80ff8000, // Breakpoint
-        0xff808000, // Line number
-        0x40000000, // Current line fill
-        0x40808080, // Current line fill (inactive)
-        0x40000000, // Current line edge
-    }};
-    return p;
-}
