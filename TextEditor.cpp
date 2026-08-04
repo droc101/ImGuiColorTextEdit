@@ -1408,6 +1408,7 @@ void TextEditor::SetText(const std::string &aText)
             mLines.back().emplace_back(chr, PaletteIndex::Default);
         }
     }
+    mLines.pop_back();
 
     mTextChanged = true;
     mScrollToTop = true;
